@@ -7,12 +7,7 @@ namespace Support
     {
         public event Action<int> OnLevelLoad;
         public event Action<bool> OnLevelEnded;
-
-        private void Start()
-        {
-            LoadLevel(SaveLoadSystem.Instance.SaveData.currentLevel);
-        }
-
+        
         public void EndLevel(bool isVictory)
         {
             OnLevelEnded?.Invoke(isVictory);
