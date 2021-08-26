@@ -15,7 +15,7 @@ namespace Support
         {
             GameController.Instance.OnLevelLoad -= LoadScene;
         }
-
+        
         private void LoadScene(int levelNumber)
         {
             if (levelNumber < 0)

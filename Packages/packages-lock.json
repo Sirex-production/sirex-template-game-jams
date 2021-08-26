@@ -84,6 +84,7 @@
     },
     "com.unity.shadergraph": {
       "version": "10.5.0",
+<<<<<<< HEAD
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -104,6 +105,28 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
+=======
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "10.5.0",
+        "com.unity.searcher": "4.3.2"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.sysroot": {
+      "version": "0.1.19-preview",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.sysroot.linux-x86_64": {
+      "version": "0.1.14-preview",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+>>>>>>> 7c2b3f137dd06f78764c88282d097c98df73d86f
         "com.unity.sysroot": "0.1.18-preview"
       },
       "url": "https://packages.unity.com"
