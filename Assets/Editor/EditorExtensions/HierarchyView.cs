@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace EditorExtensions
     [InitializeOnLoad]
     public class HierarchyView : MonoBehaviour
     {
+        private const float BACKGROUND_DRAWING_OFFSET = 16f;
+        
         static HierarchyView()
         {
             EditorApplication.hierarchyWindowItemOnGUI -= DrawCustomHierarchyGui;
@@ -16,20 +19,24 @@ namespace EditorExtensions
         {
             GameObject selectedObject = null;
             HierarchyHighlighter hierarchyHighlighter = null;
+            FontStyle fontStyleInHierarchy;
             Color backgroundColor;
             Color fontColor;
-            Font fontStyleInHierarchy;
-
+            int fontSizeInHierarchy;
+            
             selectedObject = EditorUtility.InstanceIDToObject(instanceId) as GameObject;
             if (selectedObject != null)
                 hierarchyHighlighter = selectedObject.GetComponent<HierarchyHighlighter>();
 
-            if (hierarchyHighlighter == null)
+            if (hierarchyHighlighter == null || !hierarchyHighlighter.IsDisplayed)
                 return;
-
+            
+            fontStyleInHierarchy = hierarchyHighlighter.FontStyle;
             backgroundColor = hierarchyHighlighter.BackgroundColor;
             fontColor = hierarchyHighlighter.FontColor;
-            fontStyleInHierarchy = hierarchyHighlighter.FontStyle;
+            fontSizeInHierarchy = hierarchyHighlighter.FontSize;
+            
+            hierarchyRect.center += Vector2.right * BACKGROUND_DRAWING_OFFSET;
 
             if (backgroundColor.a > 0f)
                 EditorGUI.DrawRect(hierarchyRect, backgroundColor);
@@ -37,9 +44,10 @@ namespace EditorExtensions
             if (fontColor.a > 0f)
                 EditorGUI.LabelField(hierarchyRect, selectedObject.name, new GUIStyle
                 {
-                    normal = new GUIStyleState {textColor = fontColor},
-                    font = fontStyleInHierarchy
+                    fontSize = fontSizeInHierarchy,
+                    fontStyle = fontStyleInHierarchy
                 });
         }
     }
 }
+#endif

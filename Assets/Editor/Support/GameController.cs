@@ -7,7 +7,7 @@ namespace Support
     {
         public event Action<int> OnLevelLoad;
         public event Action<bool> OnLevelEnded;
-        
+
         public void EndLevel(bool isVictory)
         {
             OnLevelEnded?.Invoke(isVictory);

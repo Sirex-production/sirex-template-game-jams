@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 985990843}
   - component: {fileID: 985990842}
   - component: {fileID: 985990841}
+  - component: {fileID: 985990844}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -300,6 +301,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707f06153e5b23f4c82d8e47a8e68c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &985990844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985990838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70cf14307e371744f8e18a5b68e41670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisplayed: 1
+  fontSize: 13
+  fontStyle: 0
+  fontColor: {r: 0, g: 0, b: 0, a: 255}
+  backgroundColor: {r: 0.7924528, g: 0.12459945, b: 0.22570391, a: 255}
 --- !u!1 &1447568833
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +328,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1447568835}
   - component: {fileID: 1447568834}
-  - component: {fileID: 1447568836}
   m_Layer: 0
   m_Name: Testing object
   m_TagString: Untagged
@@ -344,21 +361,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1447568836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447568833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70cf14307e371744f8e18a5b68e41670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fontStyle: {fileID: 0}
-  fontColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
-  backgroundColor: {r: 0.19312914, g: 0.63974315, b: 0.990566, a: 0.5372549}
 --- !u!1 &1935300632
 GameObject:
   m_ObjectHideFlags: 0
