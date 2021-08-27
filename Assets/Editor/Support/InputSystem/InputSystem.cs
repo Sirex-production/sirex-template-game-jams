@@ -7,8 +7,8 @@ namespace Support
 {
 	public class InputSystem : MonoSingleton<InputSystem>, IPointerDownHandler, IPointerUpHandler, IDragHandler
 	{
-		public event Action OnTouchAction;
-		public event Action OnReleaseAction;
+		public event Action<Vector2> OnTouchAction;
+		public event Action<Vector2> OnReleaseAction;
 		public event Action<SwipeDirection> OnSwipeAction;
 		public event Action<Vector2> OnDragAction;
 
@@ -21,7 +21,7 @@ namespace Support
 			if (!_isAbleToInput)
 				return;
 
-			OnTouchAction?.Invoke();
+			OnTouchAction?.Invoke(eventData.position);
 			_isHolding = true;
 		}
 
@@ -30,7 +30,7 @@ namespace Support
 			if (!_isAbleToInput)
 				return;
 
-			OnReleaseAction?.Invoke();
+			OnReleaseAction?.Invoke(eventData.position);
 			_isHolding = false;
 			_deltaSwipe = eventData.delta;
 
