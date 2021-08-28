@@ -1,22 +1,11 @@
 using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Support
 {
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : MonoSingleton<LevelManager>
     {
-        private void Start()
-        {
-            GameController.Instance.OnLevelLoad += LoadScene;
-        }
-
-        private void OnDestroy()
-        {
-            GameController.Instance.OnLevelLoad -= LoadScene;
-        }
-
-        private void LoadScene(int levelNumber)
+        public void LoadLevel(int levelNumber)
         {
             if (levelNumber < 0)
                 throw new ArgumentException($"There is no level with such index \"{levelNumber}\"");
@@ -26,6 +15,17 @@ namespace Support
                 : levelNumber % SceneManager.sceneCountInBuildSettings;
             
             SceneManager.LoadScene(sceneIndex);
+        }
+
+        public void RestartLevel()
+        {
+            LoadLevel(SaveLoadSystem.Instance.SaveData.currentLevel);
+        }
+        
+        public void LoadNextLevel()
+        {
+            SaveLoadSystem.Instance.SaveData.currentLevel++;
+            LoadLevel(SaveLoadSystem.Instance.SaveData.currentLevel);
         }
     }
 }

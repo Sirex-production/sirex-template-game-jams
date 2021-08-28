@@ -1,3 +1,4 @@
+using Extensions;
 using UnityEngine;
 
 namespace Support
@@ -10,9 +11,8 @@ namespace Support
         {
             if (Instance != null && Instance != this)
             {
-#if UNITY_EDITOR
-                Debug.LogWarning($"There is more than one singleton of type {typeof(T)} in the scene");
-#endif
+                this.SafeDebug($"There is more than one singleton of type {typeof(T)} in the scene", LogType.Warning);
+                
                 Destroy(this);
                 return;
             }
