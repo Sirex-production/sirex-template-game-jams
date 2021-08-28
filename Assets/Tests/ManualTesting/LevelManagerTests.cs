@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Tests.Manual
 {
-    public class LevelSwitcher : MonoBehaviour
+    public class LevelManagerTests : MonoBehaviour
     {
         [SerializeField] private KeyCode keyToLoadNextLevel = KeyCode.Space;
         [SerializeField] private KeyCode keyToRestartLevel = KeyCode.R;
