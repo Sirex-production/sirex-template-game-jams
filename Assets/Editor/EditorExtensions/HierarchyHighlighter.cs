@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using UnityEngine;
 
 namespace EditorExtensions
@@ -26,4 +25,3 @@ namespace EditorExtensions
         }
     }
 }
-#endif

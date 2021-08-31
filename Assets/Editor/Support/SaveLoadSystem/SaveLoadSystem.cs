@@ -1,3 +1,4 @@
+using Unity.Plastic.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace Support
@@ -6,6 +7,16 @@ namespace Support
     {
         [SerializeField] private SaveData saveData;
 
-        public SaveData SaveData => saveData;
+        public event Action OnValueChanged;
+        
+        public SaveData SaveData
+        {
+            get
+            {
+                OnValueChanged?.Invoke();
+                
+                return saveData;
+            }
+        }
     }
 }
