@@ -1,2 +1,2 @@
-# VoizTemplate
+# sirex-template
 Unity project template
