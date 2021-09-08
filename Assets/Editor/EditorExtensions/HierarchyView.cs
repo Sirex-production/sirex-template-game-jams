@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EditorExtensions
 { 
     [InitializeOnLoad]
-    public class HierarchyView : MonoBehaviour
+    public class HierarchyView
     {
         private const float BACKGROUND_DRAWING_OFFSET = 16f;
         
