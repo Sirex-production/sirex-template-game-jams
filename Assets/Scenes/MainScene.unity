@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecd6914206768c4a983261acc1bad11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonThatActivatesAndDeactivatesConsole: {fileID: 0}
+  keyToActivateConsole: 282
 --- !u!4 &501607089
 Transform:
   m_ObjectHideFlags: 0
@@ -382,6 +384,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3380718857085259156, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3380718858009470457, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
       propertyPath: m_RootOrder
       value: 3

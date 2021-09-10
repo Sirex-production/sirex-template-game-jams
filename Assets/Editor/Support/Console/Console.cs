@@ -4,15 +4,22 @@ using System.Linq;
 using System.Reflection;
 using Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Support.Console
 {
     public class Console : MonoSingleton<Console>
     {
+        [SerializeField] private Button buttonThatActivatesConsole;
+        [Space]
+        [SerializeField] private KeyCode keyToActivateConsole;
+        
         private LinkedList<IConsoleCommand> _consoleCommands = new LinkedList<IConsoleCommand>();
         private string _history = "";
         private string _input = "";
 
+        private bool _isActive = false;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -22,13 +29,32 @@ namespace Support.Console
                 if(classType.GetInterfaces().Contains(typeof(IConsoleCommand)))
                     _consoleCommands.AddLast((IConsoleCommand)Activator.CreateInstance(classType));
             }
+
+            if (buttonThatActivatesConsole != null)
+                buttonThatActivatesConsole.onClick.AddListener(ChangeConsoleActiveness);
+        }
+        
+        private void OnDestroy()
+        {
+            if (buttonThatActivatesConsole != null)
+                buttonThatActivatesConsole.onClick.RemoveListener(ChangeConsoleActiveness);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(keyToActivateConsole))
+                ChangeConsoleActiveness();
         }
 
         private void OnGUI()
         {
-            GUI.TextArea(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), _history);
+            if(!_isActive)
+                return;
+            
+            GUI.Box(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), "");
+            GUI.Label(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), _history);
             _input = GUI.TextArea(new Rect(new Vector2(0, 100), new Vector2(Screen.width, 50)), _input);
-
+            
             if (_input.Contains('\n'))
             {
                 WriteToTheHistory(_input);
@@ -36,12 +62,14 @@ namespace Support.Console
                 ClearInput();
             }
         }
+        
+        private void ChangeConsoleActiveness() => _isActive = !_isActive;
 
         private void ExecuteCommand(string consoleInput)
         {
             if (_consoleCommands.Count < 1)
             {
-                WriteToTheHistory("There is no command in command list");
+                WriteToTheHistory("There is no command in command list\n");
                 return;
             }
 
@@ -50,7 +78,7 @@ namespace Support.Console
 
             if (commandToExecute == null)
             {
-                WriteToTheHistory($"There is no such command {consoleInput}");
+                WriteToTheHistory($"There is no such command {consoleInput}\n");
                 return;
             }
 
@@ -58,13 +86,39 @@ namespace Support.Console
             WriteToTheHistory(commandOutput);
         }
 
+        /// <summary>
+        /// Writes given content to the history
+        /// </summary>
+        /// <param name="content"></param>
         public void WriteToTheHistory(object content)
         {
+            if(!_isActive)
+                return;
+            
             if(content != null)
                 _history += content.ToString();
         }
 
-        public void ClearHistory() => _history = "";
-        public void ClearInput() => _input = "";
+        /// <summary>
+        /// Clears history area of the console
+        /// </summary>
+        public void ClearHistory()
+        {
+            if(!_isActive)
+                return;
+            
+            _history = "";
+        }
+
+        /// <summary>
+        /// Clears input area of the console
+        /// </summary>
+        public void ClearInput()
+        {
+            if(!_isActive)
+                return;
+            
+            _input = "";
+        }
     }
 }
