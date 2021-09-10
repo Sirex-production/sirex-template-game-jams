@@ -3,8 +3,7 @@ This template is the place where we are storing, updating and creating and all
 the tools and the content that we are using for creating games in our team.
 
 ## Repository admins
-[@Vo1z](https://github.com/Vo1z) |
-[@ROB1N2401](https://github.com/ROB1N2401)
+[@Vo1z](https://github.com/Vo1z)
 
 ## Documents
 [Documentation](https://docs.google.com/document/d/1tKxvLuNqMoj280129G31g7DoX1CyjMZxtyQV2qkPWxA/edit?usp=sharing)
