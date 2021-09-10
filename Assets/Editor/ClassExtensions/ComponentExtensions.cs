@@ -1,3 +1,4 @@
+using Support;
 using UnityEngine;
 
 namespace Extensions
@@ -13,19 +14,8 @@ namespace Extensions
         public static void SafeDebug(this Component component, object objectContent, LogType logType = LogType.Log)
         {
 #if UNITY_EDITOR
-            switch (logType)
-            {
-                case LogType.Log:
-                    Debug.Log(objectContent);
-                    break;
-                case LogType.Warning:
-                    Debug.LogWarning(objectContent);
-                    break;
-                default:
-                    Debug.LogError(objectContent);
-                    break;
-            }
+            TemplateUtils.SafeDebug(objectContent, logType);
 #endif
         }
     }
-} 
+}

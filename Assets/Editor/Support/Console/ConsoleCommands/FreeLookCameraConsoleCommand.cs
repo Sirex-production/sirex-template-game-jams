@@ -4,13 +4,13 @@ namespace Support.Console
 {
     public class FreeLookCameraConsoleCommand : IConsoleCommand
     {
-        public string CommandName => "camera_free";
+        public string CommandName => "noclip";
 
-        public string Execute()
+        public string Execute(string[] args = null)
         {
             TurnOnFreeCamera();
 
-            return "Camera was activated";
+            return "Free look camera was activated";
         }
 
         private void TurnOnFreeCamera()

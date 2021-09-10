@@ -57,33 +57,38 @@ namespace Support.Console
             
             if (_input.Contains('\n'))
             {
-                WriteToTheHistory(_input);
-                ExecuteCommand(_input);
+                _input = _input.Trim();
+
+                var arguments = _input.Split(' ').ToList();
+                var command = arguments[0];
+                arguments.RemoveAt(0);
+                
+                ExecuteCommand(command, arguments.ToArray());
                 ClearInput();
             }
         }
         
         private void ChangeConsoleActiveness() => _isActive = !_isActive;
 
-        private void ExecuteCommand(string consoleInput)
+        private void ExecuteCommand(string commandName, string[] arguments)
         {
             if (_consoleCommands.Count < 1)
             {
                 WriteToTheHistory("There is no command in command list\n");
                 return;
             }
-
-            consoleInput = consoleInput.Trim();
-            var commandToExecute = _consoleCommands.SafeFirst(command => command.CommandName == consoleInput);
+            
+            var commandToExecute = _consoleCommands.SafeFirst(command => command.CommandName == commandName);
 
             if (commandToExecute == null)
             {
-                WriteToTheHistory($"There is no such command {consoleInput}\n");
+                WriteToTheHistory($"There is no such command {commandName}\n");
                 return;
             }
 
-            var commandOutput = commandToExecute.Execute();
-            WriteToTheHistory(commandOutput);
+            var commandOutput = commandToExecute.Execute(arguments);
+            WriteToTheHistory($"{_input}\n");
+            WriteToTheHistory($"{commandOutput}\n");
         }
 
         /// <summary>
