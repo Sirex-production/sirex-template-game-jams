@@ -1,25 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Console : MonoBehaviour
+namespace Support.Console
 {
-    [Header("Layout option")] 
-    [Tooltip("How many percent of the screen is taken by console vertically")]
-    [SerializeField] [Range(0, 1)] private float verticalSpaceTaken = .1f;
-
-    private string _history;
-    private string _input = "";
-
-    private void OnGUI()
+    public class Console : MonoSingleton<Console>
     {
-        GUI.color = new Color(0, 0, 0, 50);
-        _history = GUI.TextField(new Rect(0, 0, Screen.width, Screen.height * verticalSpaceTaken), _input);
-    }
+        [SerializeField] private Button buttonThatActivatesConsole;
+        [Space]
+        [SerializeField] private KeyCode keyToActivateConsole;
+        
+        private LinkedList<IConsoleCommand> _consoleCommands = new LinkedList<IConsoleCommand>();
+        private string _history = "";
+        private string _input = "";
 
-    private void Update()
-    {
-        if (_input.Contains("\n"))
+        private bool _isActive = false;
+        
+        protected override void Awake()
         {
-            _history += _input;
+            base.Awake();
+            
+            foreach (var classType in Assembly.GetExecutingAssembly().GetTypes())
+            {
+                if(classType.GetInterfaces().Contains(typeof(IConsoleCommand)))
+                    _consoleCommands.AddLast((IConsoleCommand)Activator.CreateInstance(classType));
+            }
+
+            if (buttonThatActivatesConsole != null)
+                buttonThatActivatesConsole.onClick.AddListener(ChangeConsoleActiveness);
+        }
+        
+        private void OnDestroy()
+        {
+            if (buttonThatActivatesConsole != null)
+                buttonThatActivatesConsole.onClick.RemoveListener(ChangeConsoleActiveness);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(keyToActivateConsole))
+                ChangeConsoleActiveness();
+        }
+
+        private void OnGUI()
+        {
+            if(!_isActive)
+                return;
+            
+            GUI.Box(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), "");
+            GUI.Label(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), _history);
+            _input = GUI.TextArea(new Rect(new Vector2(0, 100), new Vector2(Screen.width, 50)), _input);
+            
+            if (_input.Contains('\n'))
+            {
+                _input = _input.Trim();
+
+                var arguments = _input.Split(' ').ToList();
+                var command = arguments[0];
+                arguments.RemoveAt(0);
+                
+                ExecuteCommand(command, arguments.ToArray());
+                ClearInput();
+            }
+        }
+        
+        private void ChangeConsoleActiveness() => _isActive = !_isActive;
+
+        private void ExecuteCommand(string commandName, string[] arguments)
+        {
+            if (_consoleCommands.Count < 1)
+            {
+                WriteToTheHistory("There is no command in command list\n");
+                return;
+            }
+            
+            var commandToExecute = _consoleCommands.SafeFirst(command => command.CommandName == commandName);
+
+            if (commandToExecute == null)
+            {
+                WriteToTheHistory($"There is no such command {commandName}\n");
+                return;
+            }
+
+            var commandOutput = commandToExecute.Execute(arguments);
+            WriteToTheHistory($"{_input}\n");
+            WriteToTheHistory($"{commandOutput}\n");
+        }
+
+        /// <summary>
+        /// Writes given content to the history
+        /// </summary>
+        /// <param name="content"></param>
+        public void WriteToTheHistory(object content)
+        {
+            if(!_isActive)
+                return;
+            
+            if(content != null)
+                _history += content.ToString();
+        }
+
+        /// <summary>
+        /// Clears history area of the console
+        /// </summary>
+        public void ClearHistory()
+        {
+            if(!_isActive)
+                return;
+            
+            _history = "";
+        }
+
+        /// <summary>
+        /// Clears input area of the console
+        /// </summary>
+        public void ClearInput()
+        {
+            if(!_isActive)
+                return;
+            
             _input = "";
         }
     }
