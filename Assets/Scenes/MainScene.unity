@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecd6914206768c4a983261acc1bad11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonThatActivatesAndDeactivatesConsole: {fileID: 0}
+  buttonThatActivatesConsole: {fileID: 0}
   keyToActivateConsole: 282
 --- !u!4 &501607089
 Transform:
@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501607087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -109.92243, y: 188.08527, z: 274.70724}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -394,15 +394,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380718858009470457, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 210.66034
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3380718858009470457, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 410.826
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3380718858009470457, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.7411785
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3380718858009470457, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
       propertyPath: m_LocalRotation.w
@@ -451,15 +451,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7634327418270879448, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.27514648
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7634327418270879448, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8858948
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7634327418270879448, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.026312
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7634327418270879448, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -492,6 +492,26 @@ PrefabInstance:
     - target: {fileID: 7634327418270879450, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
       propertyPath: m_Name
       value: TestsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634327418270879455, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
+      propertyPath: debugDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634327418270879455, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
+      propertyPath: debugSwipe
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634327418270879455, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
+      propertyPath: debugTouch
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634327418270879455, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
+      propertyPath: debugRelease
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634327418270879455, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}
+      propertyPath: debugDirectionalSwipe
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 701fd62f042ce7d4586456dbf8b5a7f7, type: 3}

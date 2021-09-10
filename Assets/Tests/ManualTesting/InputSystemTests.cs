@@ -6,6 +6,7 @@ namespace Tests.Manual
 {
     public class InputSystemTests : MonoBehaviour
     {
+        [SerializeField] private bool debugDirectionalSwipe = false;
         [SerializeField] private bool debugSwipe = false;
         [SerializeField] private bool debugTouch = false;
         [SerializeField] private bool debugRelease = false;
@@ -13,6 +14,7 @@ namespace Tests.Manual
 
         private void Start()
         {
+            InputSystem.Instance.OnDirectionalSwipeAction += DebugDirectionalSwipe;
             InputSystem.Instance.OnSwipeAction += DebugSwipe;
             InputSystem.Instance.OnTouchAction += DebugTouch;
             InputSystem.Instance.OnReleaseAction += DebugTouchRelease;
@@ -21,10 +23,17 @@ namespace Tests.Manual
 
         private void OnDestroy()
         {
+            InputSystem.Instance.OnDirectionalSwipeAction -= DebugDirectionalSwipe;
             InputSystem.Instance.OnSwipeAction -= DebugSwipe;
             InputSystem.Instance.OnTouchAction -= DebugTouch;
             InputSystem.Instance.OnReleaseAction -= DebugTouchRelease;
             InputSystem.Instance.OnDragAction -= DebugDrag;
+        }
+
+        private void DebugDirectionalSwipe(Vector2 swipeDirection)
+        {
+            if(debugDirectionalSwipe)
+                this.SafeDebug($"Directional swipe performed {swipeDirection}");
         }
 
         private void DebugSwipe(SwipeDirection swipeDirection)
