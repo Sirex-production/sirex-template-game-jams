@@ -70,12 +70,18 @@ namespace Support.Console
         
         private void ChangeConsoleActiveness() => _isActive = !_isActive;
 
-        private void ExecuteCommand(string commandName, string[] arguments)
+        /// <summary>
+        /// Executes given command
+        /// </summary>
+        /// <param name="commandName">Command to execute</param>
+        /// <param name="arguments">Command arguments</param>
+        /// <returns>Returns true if command was found. Otherwise returns false</returns>
+        public bool ExecuteCommand(string commandName, string[] arguments)
         {
             if (_consoleCommands.Count < 1)
             {
                 WriteToTheHistory("There is no command in command list\n");
-                return;
+                return false;
             }
             
             var commandToExecute = _consoleCommands.SafeFirst(command => command.CommandName == commandName);
@@ -83,12 +89,14 @@ namespace Support.Console
             if (commandToExecute == null)
             {
                 WriteToTheHistory($"There is no such command {commandName}\n");
-                return;
+                return true;
             }
 
             var commandOutput = commandToExecute.Execute(arguments);
             WriteToTheHistory($"{_input}\n");
             WriteToTheHistory($"{commandOutput}\n");
+
+            return true;
         }
 
         /// <summary>
