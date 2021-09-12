@@ -7,6 +7,7 @@ namespace EditorExtensions
     public class HierarchyView
     {
         private const float BACKGROUND_DRAWING_OFFSET = 16f;
+        private const float BACKGROUND_MAXIMUM_X_POS_SCALE = .9f;
         
         static HierarchyView()
         {
@@ -36,6 +37,7 @@ namespace EditorExtensions
             fontSizeInHierarchy = hierarchyHighlighter.FontSize;
             
             hierarchyRect.center += Vector2.right * BACKGROUND_DRAWING_OFFSET;
+            hierarchyRect.xMax *= BACKGROUND_MAXIMUM_X_POS_SCALE;
 
             if (backgroundColor.a > 0f)
                 EditorGUI.DrawRect(hierarchyRect, backgroundColor);

@@ -8,13 +8,13 @@ namespace Tests.Manual
         [NotNull]
         [SerializeField] private GameObject notNull;
 
-        [EditorExtensions.ReadOnly] 
+        [ReadOnly] 
         [SerializeField] private GameObject readOnly;
 
         [SerializeField] private GameObject usualField;
 
         //todo Does not work with value types
         // [NotNull]
-        // public int a = 2;
+        // public int valueType = 2;
     }
 }
