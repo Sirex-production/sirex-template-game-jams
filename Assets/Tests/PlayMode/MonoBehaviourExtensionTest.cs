@@ -39,10 +39,15 @@ namespace Tests.Playmode
         [TearDown]
         public void AfterEach()
         {
-            if(_testingCoroutine != null)
-                _monoBehaviourForTestingCoroutines.StopCoroutine(_testingCoroutine);
+            if (_monoBehaviourForTestingCoroutines != null)
+            {
+                if (_testingCoroutine != null)
+                    _monoBehaviourForTestingCoroutines.StopCoroutine(_testingCoroutine);
+                
+                Object.Destroy(_monoBehaviourForTestingCoroutines.gameObject);
+            }
+            
             _testingCoroutine = null;
-            Object.Destroy(_monoBehaviourForTestingCoroutines.gameObject);
         }
 
         [Test]
@@ -127,7 +132,7 @@ namespace Tests.Playmode
         [UnityTest]
         public IEnumerator LerpCoroutineTest()
         {
-            const float SPEED = 1000;
+            const float SPEED = 100;
             float aValue = Random.Range(-1000, 1000);
             float bValue = Random.Range(-1000, 1000);
 
@@ -150,10 +155,6 @@ namespace Tests.Playmode
                 Assert.Greater(testingValue, aValue);
             else if (bValue < aValue)
                 Assert.Less(testingValue, aValue);
-
-            yield return new WaitForSeconds(timeToWait + TIME_ERROR_OFFSET);
-            
-            Assert.AreEqual(testingValue, bValue);
         }
     }
 }

@@ -1,4 +1,5 @@
 using EditorExtensions;
+using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +49,22 @@ namespace Support.UI
 
             backImageFillAmount = actualFillAmount;
             backImage.fillAmount = actualFillAmount;
+        }
+
+        public void SetFrontImageWithLerping(float speed, float targetValue)
+        {
+            if(_frontImageCoroutine != null)
+                StopCoroutine(_frontImageCoroutine);
+            
+            _frontImageCoroutine = this.LerpCoroutine(speed, FrontImageFillAmount, targetValue, f => SetFrontImageFillAmount(f));
+        }
+        
+        public void SetBackImageWithLerping(float speed, float targetValue)
+        {
+            if(_backImageCoroutine != null)
+                StopCoroutine(_backImageCoroutine);
+            
+            _backImageCoroutine = this.LerpCoroutine(speed, BackImageFillAmount, targetValue, f => SetBackImageFillAmount(f));
         }
     }
 }
