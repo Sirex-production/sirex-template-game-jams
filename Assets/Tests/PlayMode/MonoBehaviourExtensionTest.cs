@@ -1,20 +1,27 @@
+using System.Collections;
 using Extensions;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests.Playmode
 {
     public class MonoBehaviourExtensionTest
     {
         private class MonoBehaviourImplementation : MonoBehaviour { }
+
+        private const float TIME_ERROR_OFFSET = .1f;
         
         private GameObject _objectToTurnOff;
         private GameObject _objectToTurnOn;
         private MonoBehaviour _monoBehaviourForTurningGameObjectOff; 
         private MonoBehaviour _monoBehaviourForTurningGameObjectOn;
+
+        private MonoBehaviour _monoBehaviourForTestingCoroutines;
+        private Coroutine _testingCoroutine;
         
         [SetUp]
-        public void Before()
+        public void BeforeEach()
         {
             _objectToTurnOff = new GameObject();
             _objectToTurnOn = new GameObject();
@@ -24,6 +31,18 @@ namespace Tests.Playmode
             
             _objectToTurnOff.SetActive(true);
             _objectToTurnOn.SetActive(false);
+
+            var tmpObjectForTestingCoroutines = new GameObject();
+            _monoBehaviourForTestingCoroutines = tmpObjectForTestingCoroutines.AddComponent<MonoBehaviourImplementation>();
+        }
+
+        [TearDown]
+        public void AfterEach()
+        {
+            if(_testingCoroutine != null)
+                _monoBehaviourForTestingCoroutines.StopCoroutine(_testingCoroutine);
+            _testingCoroutine = null;
+            Object.Destroy(_monoBehaviourForTestingCoroutines.gameObject);
         }
 
         [Test]
@@ -44,6 +63,65 @@ namespace Tests.Playmode
             _monoBehaviourForTurningGameObjectOn.SetGameObjectActive();
 
             Assert.True(_objectToTurnOn.activeSelf);
+        }
+        
+        [UnityTest]
+        public IEnumerator RepeatCoroutineTestStartingWithPause()
+        {
+            int numberOfPauses = Random.Range(1, 3);
+            int incrementor = Random.Range(int.MinValue, int.MaxValue);
+            int initialIncrementorValue = incrementor;
+            
+            _monoBehaviourForTestingCoroutines.RepeatCoroutine(1, () => incrementor++, true);
+
+            yield return new WaitForSeconds(numberOfPauses + TIME_ERROR_OFFSET);
+
+            Assert.AreEqual(incrementor, initialIncrementorValue + numberOfPauses);
+        }
+        
+        [UnityTest]
+        public IEnumerator RepeatCoroutineTestStartingWithoutPause()
+        {
+            int numberOfPauses = Random.Range(1, 3);
+            int incrementor = Random.Range(int.MinValue, int.MaxValue);
+            int initialIncrementorValue = incrementor;
+            
+            _monoBehaviourForTestingCoroutines.RepeatCoroutine(1, () => incrementor++);
+
+            yield return new WaitForSeconds(numberOfPauses + TIME_ERROR_OFFSET);
+
+            Assert.AreEqual(incrementor, initialIncrementorValue + numberOfPauses + 1);
+        }
+        
+        [UnityTest]
+        public IEnumerator DoAfterNextFrameCoroutineTest()
+        {
+            bool testingBoolean = Random.value > .5f;
+            bool initialTestingBoolean = testingBoolean;
+
+            _monoBehaviourForTestingCoroutines.DoAfterNextFrameCoroutine(() => testingBoolean = !testingBoolean);
+            
+            Assert.AreEqual(testingBoolean, initialTestingBoolean);
+
+            yield return null;
+
+            Assert.AreNotEqual(testingBoolean, initialTestingBoolean);
+        }
+        
+        [UnityTest]
+        public IEnumerator WaitAndDoCoroutineTest()
+        {
+            float timeToWait = Random.Range(1f, 3f);
+            bool testingBoolean = Random.value > .5f;
+            bool initialTestingBoolean = testingBoolean;
+
+            _monoBehaviourForTestingCoroutines.WaitAndDoCoroutine(timeToWait, () => testingBoolean = !testingBoolean);
+            
+            Assert.AreEqual(testingBoolean, initialTestingBoolean);
+            
+            yield return new WaitForSeconds(timeToWait + TIME_ERROR_OFFSET);
+            
+            Assert.AreNotEqual(testingBoolean, initialTestingBoolean);
         }
     }
 }
