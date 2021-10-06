@@ -123,5 +123,37 @@ namespace Tests.Playmode
             
             Assert.AreNotEqual(testingBoolean, initialTestingBoolean);
         }
+
+        [UnityTest]
+        public IEnumerator LerpCoroutineTest()
+        {
+            const float SPEED = 1000;
+            float aValue = Random.Range(-1000, 1000);
+            float bValue = Random.Range(-1000, 1000);
+
+            if (aValue == bValue) 
+                bValue += Random.Range(-500, 500);
+
+            float timeToWait = Mathf.Abs(aValue - bValue) / SPEED;
+            float testingValue = 0;
+            
+            void Lerp(float intermediateValue)
+            {
+                testingValue = intermediateValue;
+            }
+            
+            _monoBehaviourForTestingCoroutines.LerpCoroutine(SPEED, aValue, bValue, Lerp);
+
+            yield return new WaitForSeconds(timeToWait / 2);
+
+            if(bValue > aValue)
+                Assert.Greater(testingValue, aValue);
+            else if (bValue < aValue)
+                Assert.Less(testingValue, aValue);
+
+            yield return new WaitForSeconds(timeToWait + TIME_ERROR_OFFSET);
+            
+            Assert.AreEqual(testingValue, bValue);
+        }
     }
 }
