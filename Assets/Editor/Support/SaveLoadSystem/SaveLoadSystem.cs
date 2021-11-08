@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Support.SLS
@@ -28,6 +29,7 @@ namespace Support.SLS
             PlayerPrefs.Save();
         }
 
+        [Button("Clear save data")]
         public void ClearSaveData()
         {
             PlayerPrefs.SetString("save", null);
