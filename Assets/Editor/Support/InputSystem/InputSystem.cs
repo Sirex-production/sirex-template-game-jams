@@ -5,14 +5,22 @@ using UnityEngine.EventSystems;
 
 namespace Support
 {
+	/// <summary>
+	/// Class that is responsible for reading user input
+	/// </summary>
 	public class InputSystem : MonoSingleton<InputSystem>, IPointerDownHandler, IPointerUpHandler, IDragHandler
 	{
 		[SerializeField] private float minimumDeltaSwipe = 2f;
 		
+		/// <summary> Event that activates when user touches the screen. Takes a Vector2 that represent touch position on the screen </summary>
 		public event Action<Vector2> OnTouchAction;
+		/// <summary> Event that activates when user releases the screen. Takes a Vector2 that represent release position on the screen </summary>
 		public event Action<Vector2> OnReleaseAction;
+		/// <summary> Event that activates when user performs swipe. Takes a Vector2 that represent swipe direction </summary>
 		public event Action<Vector2> OnDirectionalSwipeAction;
+		/// <summary> Event that activates when user performs swipe. Takes a SwipeDirection that represent swipe direction </summary>
 		public event Action<SwipeDirection> OnSwipeAction;
+		/// <summary> Event that activates when user drags. Takes a Vector2 that represent drag direction </summary>
 		public event Action<Vector2> OnDragAction;
 
 		private bool _isHolding = true;

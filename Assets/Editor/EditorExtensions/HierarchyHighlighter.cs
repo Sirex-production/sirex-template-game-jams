@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace EditorExtensions
 {
+    /// <summary>
+    /// Class that represents data of highlighted object in hierarchy
+    /// </summary>
     public class HierarchyHighlighter : MonoBehaviour
     {
         [SerializeField] private bool isDisplayed = true;

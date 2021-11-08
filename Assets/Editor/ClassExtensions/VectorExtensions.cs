@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Extensions
 {
+    /// <summary>
+    /// Class that holds all extension methods for Vectors class 
+    /// </summary>
     public static class VectorExtensions
     {
         public static Vector3 Abs(this Vector3 vector3)

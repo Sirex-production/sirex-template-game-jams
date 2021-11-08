@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace EditorExtensions
 {
+    /// <summary>
+    /// Attribute that defines custom view for NotNullAttribute
+    /// </summary>
     [CustomPropertyDrawer(typeof(NotNullAttribute))]
     public class NotNullDrawer : PropertyDrawer
     {

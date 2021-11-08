@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 namespace Extensions
 {
+    /// <summary>
+    /// Class that holds all extension methods for DataStructures 
+    /// </summary>
     public static class DataStructuresExtensions
     {
         /// <summary>
-        /// Same as First() method from standard library but does not throws exception when element is not found 
+        /// Same as First() method from the standard library but does not throw exception when an element is not found
         /// </summary>
         /// <param name="source">Collection where element will be found</param>
         /// <param name="predicate">Finding condition</param>

@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace Support.Console
 {
+    /// <summary>
+    /// Class that responsible for managing console input and output
+    /// </summary>
     public class Console : MonoSingleton<Console>
     {
         [SerializeField] private Button buttonThatActivatesConsole;

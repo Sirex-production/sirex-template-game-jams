@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace EditorExtensions
 {
+    /// <summary>
+    /// Class that responsible for custom view in hierarchy view
+    /// </summary>
 #if UNITY_EDITOR
     [InitializeOnLoad]
     public class HierarchyView

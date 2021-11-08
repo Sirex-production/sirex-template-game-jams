@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace EditorExtensions
 {
+    /// <summary>
+    /// Attribute that defines custom view for ReadOnlyAttribute
+    /// </summary>
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
