@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1140086697}
+  animationSpeed: 0.3
 --- !u!1 &487315848
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +555,6 @@ MonoBehaviour:
   backImage: {fileID: 579633033}
   frontImageFillAmount: 0.65
   backImageFillAmount: 0.8
-  animationSpeed: 0.5
 --- !u!1 &1935300632
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,22 +1,39 @@
-using System;
+using NaughtyAttributes;
 using UnityEngine;
 
-namespace Support
+namespace Support.SLS
 {
     public class SaveLoadSystem : MonoSingleton<SaveLoadSystem>
     {
-        [SerializeField] private SaveData saveData;
+        private SaveData _saveData;
+        private ISaveDataSerializer _saveDataSerializer = new BinarySerializer();
 
-        public event Action OnValueChanged;
-        
-        public SaveData SaveData
+        public SaveData SaveData => _saveData;
+
+        protected override void Awake()
         {
-            get
-            {
-                OnValueChanged?.Invoke();
-                
-                return saveData;
-            }
+            base.Awake();
+
+            var serializedSaveData = PlayerPrefs.GetString("save");
+            if (string.IsNullOrEmpty(serializedSaveData)) 
+                _saveData = new SaveData();
+            else
+                _saveData = _saveDataSerializer.DeserializeData(serializedSaveData);
+        }
+
+        public void PerformSave()
+        {
+            var serializedData = _saveDataSerializer.SerializeData(_saveData);
+            
+            PlayerPrefs.SetString("save", serializedData);
+            PlayerPrefs.Save();
+        }
+
+        [Button("Clear save data")]
+        public void ClearSaveData()
+        {
+            PlayerPrefs.SetString("save", null);
+            PlayerPrefs.Save();
         }
     }
 }
