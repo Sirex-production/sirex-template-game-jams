@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc57bc759487ab247a73183df75d7adf, type: 3}
-  m_Name: DefaultSave
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: NewSave
+  m_EditorClassIdentifier: EditorDefinition:Support:SaveDataSO
   currentLevel: 0

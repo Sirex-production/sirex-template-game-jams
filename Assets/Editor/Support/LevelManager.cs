@@ -1,4 +1,5 @@
 using System;
+using Support.SLS;
 using UnityEngine.SceneManagement;
 
 namespace Support
@@ -19,13 +20,15 @@ namespace Support
 
         public void RestartLevel()
         {
-            LoadLevel(SaveLoadSystem.Instance.SaveData.currentLevel);
+            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Data);
         }
         
         public void LoadNextLevel()
         {
-            SaveLoadSystem.Instance.SaveData.currentLevel++;
-            LoadLevel(SaveLoadSystem.Instance.SaveData.currentLevel);
+            SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Data++;
+            SaveLoadSystem.Instance.PerformSave();
+            
+            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Data);
         }
     }
 }
