@@ -29,16 +29,16 @@ namespace Support
         /// <summary>Restarts last level that was saved in progress(SaveLoadSystem)</summary>
         public void RestartLevel()
         {
-            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Data);
+            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Value);
         }
         
         /// <summary>Loads next level and modifies progress in SaveLoadSystem</summary>
         public void LoadNextLevel()
         {
-            SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Data++;
+            SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Value++;
             SaveLoadSystem.Instance.PerformSave();
             
-            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Data);
+            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Value);
         }
     }
 }

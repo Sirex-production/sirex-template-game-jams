@@ -13,7 +13,7 @@ namespace Support.Console
     /// </summary>
     public class Console : MonoSingleton<Console>
     {
-        [SerializeField] private Button buttonThatActivatesConsole;
+        [SerializeField] private Button uiButtonThatActivatesConsole;
         [Space]
         [SerializeField] private KeyCode keyToActivateConsole;
         
@@ -33,14 +33,14 @@ namespace Support.Console
                     _consoleCommands.AddLast((IConsoleCommand)Activator.CreateInstance(classType));
             }
 
-            if (buttonThatActivatesConsole != null)
-                buttonThatActivatesConsole.onClick.AddListener(ChangeConsoleActiveness);
+            if (uiButtonThatActivatesConsole != null)
+                uiButtonThatActivatesConsole.onClick.AddListener(ChangeConsoleActiveness);
         }
         
         private void OnDestroy()
         {
-            if (buttonThatActivatesConsole != null)
-                buttonThatActivatesConsole.onClick.RemoveListener(ChangeConsoleActiveness);
+            if (uiButtonThatActivatesConsole != null)
+                uiButtonThatActivatesConsole.onClick.RemoveListener(ChangeConsoleActiveness);
         }
 
         private void Update()

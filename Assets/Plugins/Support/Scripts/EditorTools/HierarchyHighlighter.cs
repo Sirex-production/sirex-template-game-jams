@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace EditorExtensions
@@ -9,10 +10,14 @@ namespace EditorExtensions
     {
         [SerializeField] private bool isDisplayed = true;
         [Space(10)]
+        [ShowIf("isDisplayed"), Foldout("Appearance")]
         [SerializeField] [Range(0, 15)] private int fontSize = 10;
+        [ShowIf("isDisplayed"), Foldout("Appearance")]
         [SerializeField] private FontStyle fontStyle = FontStyle.Normal;
+        [ShowIf("isDisplayed"), Foldout("Appearance")]
         [SerializeField] private Color fontColor = Color.black;
         [Space]
+        [ShowIf("isDisplayed"), Foldout("Appearance")]
         [SerializeField] private Color backgroundColor = Color.white;
 
         public bool IsDisplayed => isDisplayed;

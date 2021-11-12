@@ -14,20 +14,20 @@ namespace Tests.Manual
 
         private void Start()
         {
-            InputSystem.Instance.OnDirectionalSwipeAction += DebugDirectionalSwipe;
-            InputSystem.Instance.OnSwipeAction += DebugSwipe;
-            InputSystem.Instance.OnTouchAction += DebugTouch;
-            InputSystem.Instance.OnReleaseAction += DebugTouchRelease;
-            InputSystem.Instance.OnDragAction += DebugDrag;
+            TouchScreenInputSystem.Instance.OnDirectionalSwipeAction += DebugDirectionalSwipe;
+            TouchScreenInputSystem.Instance.OnSwipeAction += DebugSwipe;
+            TouchScreenInputSystem.Instance.OnTouchAction += DebugTouch;
+            TouchScreenInputSystem.Instance.OnReleaseAction += DebugTouchRelease;
+            TouchScreenInputSystem.Instance.OnDragAction += DebugDrag;
         }
 
         private void OnDestroy()
         {
-            InputSystem.Instance.OnDirectionalSwipeAction -= DebugDirectionalSwipe;
-            InputSystem.Instance.OnSwipeAction -= DebugSwipe;
-            InputSystem.Instance.OnTouchAction -= DebugTouch;
-            InputSystem.Instance.OnReleaseAction -= DebugTouchRelease;
-            InputSystem.Instance.OnDragAction -= DebugDrag;
+            TouchScreenInputSystem.Instance.OnDirectionalSwipeAction -= DebugDirectionalSwipe;
+            TouchScreenInputSystem.Instance.OnSwipeAction -= DebugSwipe;
+            TouchScreenInputSystem.Instance.OnTouchAction -= DebugTouch;
+            TouchScreenInputSystem.Instance.OnReleaseAction -= DebugTouchRelease;
+            TouchScreenInputSystem.Instance.OnDragAction -= DebugDrag;
         }
 
         private void DebugDirectionalSwipe(Vector2 swipeDirection)
