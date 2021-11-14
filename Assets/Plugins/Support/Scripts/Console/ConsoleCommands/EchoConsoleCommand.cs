@@ -7,7 +7,8 @@ namespace Support.Console
     /// </summary>
     public class EchoConsoleCommand : IConsoleCommand
     {
-        public string CommandName => "echo";
+        public string Name => "echo";
+        public string Description => "Prints input in the console";
 
         public string Execute(string[] args = null)
         {

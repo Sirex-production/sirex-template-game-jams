@@ -13,10 +13,14 @@ namespace Support.Console
     /// </summary>
     public class Console : MonoSingleton<Console>
     {
+        [Tooltip("UI button that will activate console (Can be not assigned)")]
         [SerializeField] private Button uiButtonThatActivatesConsole;
         [Space]
         [SerializeField] private KeyCode keyToActivateConsole;
-        
+
+        private readonly (Vector2 position, Vector2 size) INPUT_AREA_SCREEN_PROPERTIES = (new Vector2(0, 0), new Vector2(Screen.width, 50));
+        private readonly (Vector2 position, Vector2 size) OUTPUT_AREA_SCREEN_PROPERTIES = (new Vector2(0, 50), new Vector2(Screen.width, 300));
+
         private LinkedList<IConsoleCommand> _consoleCommands = new LinkedList<IConsoleCommand>();
         private string _history = "";
         private string _input = "";
@@ -54,9 +58,9 @@ namespace Support.Console
             if(!_isActive)
                 return;
             
-            GUI.Box(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), "");
-            GUI.Label(new Rect(new Vector2(0, 0), new Vector2(Screen.width, 100)), _history);
-            _input = GUI.TextArea(new Rect(new Vector2(0, 100), new Vector2(Screen.width, 50)), _input);
+            GUI.Box(new Rect(OUTPUT_AREA_SCREEN_PROPERTIES.position, OUTPUT_AREA_SCREEN_PROPERTIES.size), "");
+            GUI.Label(new Rect(OUTPUT_AREA_SCREEN_PROPERTIES.position, OUTPUT_AREA_SCREEN_PROPERTIES.size), _history);
+            _input = GUI.TextArea(new Rect(INPUT_AREA_SCREEN_PROPERTIES.position, INPUT_AREA_SCREEN_PROPERTIES.size), _input);
             
             if (_input.Contains('\n'))
             {
@@ -71,7 +75,20 @@ namespace Support.Console
             }
         }
         
-        private void ChangeConsoleActiveness() => _isActive = !_isActive;
+        private void ChangeConsoleActiveness()
+        {
+            _isActive = !_isActive;
+        }
+
+        public void TurnOn()
+        {
+            _isActive = true;
+        }
+
+        public void TurnOff()
+        {
+            _isActive = false;
+        }
 
         /// <summary>
         /// Executes given command
@@ -87,7 +104,7 @@ namespace Support.Console
                 return false;
             }
             
-            var commandToExecute = _consoleCommands.SafeFirst(command => command.CommandName == commandName);
+            var commandToExecute = _consoleCommands.SafeFirst(command => command.Name == commandName);
 
             if (commandToExecute == null)
             {
@@ -97,7 +114,7 @@ namespace Support.Console
 
             var commandOutput = commandToExecute.Execute(arguments);
             WriteToTheHistory($"{_input}\n");
-            WriteToTheHistory($"{commandOutput}\n");
+            WriteToTheHistory(String.IsNullOrEmpty(commandOutput) ? "" : $"{commandOutput}\n");
 
             return true;
         }
@@ -135,6 +152,16 @@ namespace Support.Console
                 return;
             
             _input = "";
+        }
+
+        /// <summary>
+        /// Finds instance of IConsoleCommand by command name
+        /// </summary>
+        /// <param name="commandName">Name of the command that IConsoleCommand instance should have</param>
+        /// <returns>Instance of IConsoleCommand that was found. If there is no such commands, returns null</returns>
+        public IConsoleCommand GetCommandByCommandName(string commandName)
+        {
+            return _consoleCommands.SafeFirst(command => command.Name == commandName);
         }
     }
 }
