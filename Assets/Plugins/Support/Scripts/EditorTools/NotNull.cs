@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace EditorExtensions
 {
+#if UNITY_EDITOR
     /// <summary>
     /// Attribute that defines custom view for NotNullAttribute
     /// </summary>
@@ -26,7 +27,8 @@ namespace EditorExtensions
             EditorGUI.EndProperty();
         }
     }
-
+#endif
+    
     [AttributeUsage(AttributeTargets.Field)]
     public class NotNullAttribute : PropertyAttribute { }
 }
