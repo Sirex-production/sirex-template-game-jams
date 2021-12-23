@@ -157,6 +157,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1140086697}
   animationSpeed: 0.3
+--- !u!114 &342412277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342412274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dd30996e44abb30b5f38566580d404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeId: Default
+  lerpSpeed: 1
 --- !u!1 &487315848
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +486,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -552,6 +566,14 @@ PrefabInstance:
     - target: {fileID: 3380718858009470459, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
       propertyPath: m_Name
       value: GameManagement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456106542172207063, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
+      propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456106542172207063, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba63fe3fec44e5448c7b5fe222d7f92, type: 3}
