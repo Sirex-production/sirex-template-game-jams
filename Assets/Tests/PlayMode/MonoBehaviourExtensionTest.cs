@@ -1,10 +1,10 @@
 using System.Collections;
-using Extensions;
+using Support.Extensions;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests.Playmode
+namespace Support.Tests.Playmode
 {
     public class MonoBehaviourExtensionTest
     {

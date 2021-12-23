@@ -1,8 +1,7 @@
-using Support;
 using UnityEngine;
-using Extensions;
+using Support.Extensions;
 
-namespace Tests.Manual
+namespace Support.Tests.Manual
 {
     public class InputSystemTests : MonoBehaviour
     {

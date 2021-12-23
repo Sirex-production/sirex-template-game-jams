@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Extensions
+namespace Support.Extensions
 {
     /// <summary>
     /// Class that holds all extension methods for MonoBehaviour class 

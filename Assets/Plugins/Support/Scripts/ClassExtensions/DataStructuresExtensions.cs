@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Extensions
+namespace Support.Extensions
 {
     /// <summary>
     /// Class that holds all extension methods for DataStructures 
