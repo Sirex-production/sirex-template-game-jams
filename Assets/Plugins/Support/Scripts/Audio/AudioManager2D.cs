@@ -1,42 +1,44 @@
-using Support;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using NaughtyAttributes;
+
 namespace Support { 
-    public class AudioManager : MonoSingleton<AudioManager>
+    public class AudioManager2D : MonoSingleton<AudioManager2D>
     {
         //getting resources
         [Foldout("Source")]
         [SerializeField]
         [ReorderableList]
-        private Sound[] sounds;
+        private Sound2D[] sounds;
 
         [Foldout("Source")]
         [SerializeField]
         [ReorderableList]
 
-        private Sound[] music;
+        private Sound2D[] music;
         [Foldout("Source")]
         [SerializeField]
         [ReorderableList]
-        private Sound[] dialogs;
+        private Sound2D[] dialogs;
         //Dictionary - fetch resources from Arrays to simplisify choosing a sound
-        private Dictionary<string,Sound> _sounds = new Dictionary<string, Sound>();
-        private Dictionary<string,Sound> _music = new Dictionary<string, Sound>();
-        private Dictionary<string,Sound> _dialogs = new Dictionary<string, Sound>();
+        private Dictionary<string, Sound2D> _sounds = new Dictionary<string, Sound2D>();
+        private Dictionary<string, Sound2D> _musics = new Dictionary<string, Sound2D>();
+        private Dictionary<string, Sound2D> _dialogs = new Dictionary<string, Sound2D>();
 
         private void Awake()
         {
+            base.Awake();
             CopySoundsListIntoDictionary(dialogs, _dialogs);
-            CopySoundsListIntoDictionary(music,_music );
-            CopySoundsListIntoDictionary(sounds,_sounds );
+            CopySoundsListIntoDictionary(music, _musics);
+            CopySoundsListIntoDictionary(sounds, _sounds);
         }
 
         #region PRIVATE_METHODS
-        private void CopySoundsListIntoDictionary(Sound[] arr, Dictionary<string, Sound> dic)
+        private void CopySoundsListIntoDictionary(Sound2D[] arr, Dictionary<string, Sound2D> dic)
         {
-            foreach(Sound s in arr)
+            foreach (Sound2D s in arr)
             {
                 s.Source = gameObject.AddComponent<AudioSource>();
                 s.Source.clip = s.Clip;
@@ -47,25 +49,26 @@ namespace Support {
                 dic.Add(s.Name, s);
             }
         }
-        
-        private Sound GetRawSound(Dictionary<string, Sound> arr,string s)
+
+        protected Sound2D GetRawSound(Dictionary<string, Sound2D> arr, string s)
         {
-            Sound result;
-            if (!arr.TryGetValue(s,out result))
+            Sound2D result;
+            if (!arr.TryGetValue(s, out result))
                 return null;
             return result;
         }
 
-        private void PlayRawSound(Dictionary<string, Sound> arr, string s) {
+        protected void PlayRawSound(Dictionary<string, Sound2D> arr, string s)
+        {
             var res = GetRawSound(arr, s);
             res?.Source.Play();
         }
-        private void StopRawSound(Dictionary<string, Sound> arr, string s)
+        protected void StopRawSound(Dictionary<string, Sound2D> arr, string s)
         {
             var res = GetRawSound(arr, s);
             res?.Source.Stop();
         }
-        private void ResetRawSound(Dictionary<string, Sound> arr, string s)
+        protected void ResetRawSound(Dictionary<string, Sound2D> arr, string s)
         {
             var res = GetRawSound(arr, s);
             if (res == null)
@@ -78,7 +81,7 @@ namespace Support {
         #region PLAY_SOUND
         public void PlayMusic(string s)
         {
-            PlayRawSound(_music, s);
+            PlayRawSound(_musics, s);
         }
         public void PlayDialog(string s)
         {
@@ -93,31 +96,32 @@ namespace Support {
         #region STOP_SOUND
         public void StopMusic(string s)
         {
-            StopRawSound(_music, s);
+            StopRawSound(_musics, s);
         }
         public void StopSound(string s)
         {
-            StopRawSound(_music, s);
+            StopRawSound(_sounds, s);
         }
         public void StopDialog(string s)
         {
-            StopRawSound(_music, s);
+            StopRawSound(_dialogs, s);
         }
         #endregion
         #region RESET_SOUND
         public void ResetMusic(string s)
         {
-            ResetRawSound(_music, s);
+            ResetRawSound(_musics, s);
         }
         public void ResetSound(string s)
         {
-            ResetRawSound(_music, s);
+            ResetRawSound(_sounds, s);
         }
         public void ResetDialog(string s)
         {
-            ResetRawSound(_music, s);
+            ResetRawSound(_dialogs, s);
         }
         #endregion
         #endregion
+    
     }
 }

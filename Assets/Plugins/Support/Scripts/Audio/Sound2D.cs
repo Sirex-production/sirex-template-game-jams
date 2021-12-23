@@ -1,15 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-
+using System;
 
 namespace Support
 {
     [Serializable]
     [RequireComponent(typeof(AudioSource))]
-    public class Sound
+    public class Sound2D
     {
         #region SERIALIZE
         [SerializeField]
@@ -37,7 +36,7 @@ namespace Support
         public bool Loop => loop;
 
 
-        //[HideInInspector]
+        [HideInInspector]
         public AudioSource Source;
         #endregion
     }
