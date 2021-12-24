@@ -3,7 +3,7 @@ using EditorExtensions;
 using Support.UI;
 using UnityEngine;
 
-namespace Tests.Manual
+namespace Support.Tests.Manual
 {
     public class UiSliderTests : MonoBehaviour
     {

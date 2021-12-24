@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Support;
 
-namespace Tests.Playmode
+namespace Support.Tests.Playmode
 {
     public class MonoSingletonTest
     {

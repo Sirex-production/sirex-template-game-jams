@@ -1,7 +1,7 @@
 using EditorExtensions;
 using UnityEngine;
 
-namespace Tests.Manual
+namespace Support.Tests.Manual
 {
     public class AttributesTest : MonoBehaviour
     {

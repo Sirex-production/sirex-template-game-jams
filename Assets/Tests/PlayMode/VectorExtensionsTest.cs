@@ -1,8 +1,8 @@
-using Extensions;
+using Support.Extensions;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Tests.Playmode
+namespace Support.Tests.Playmode
 {
     public class VectorExtensionsTest : MonoBehaviour
     {

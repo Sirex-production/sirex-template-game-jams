@@ -1,7 +1,6 @@
-using Support;
 using UnityEngine;
 
-namespace Tests.Manual
+namespace Support.Tests.Manual
 {
     public class LevelManagerTests : MonoBehaviour
     {
