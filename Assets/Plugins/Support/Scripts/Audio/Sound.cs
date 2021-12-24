@@ -7,10 +7,9 @@ using System;
 namespace Support
 {
     [Serializable]
-    [RequireComponent(typeof(AudioSource))]
-    public class Sound2D
+     public class Sound 
     {
-        #region SERIALIZE
+
         [SerializeField]
         private string name;
         [SerializeField]
@@ -27,17 +26,28 @@ namespace Support
 
         [SerializeField]
         private bool loop = false;
-        #endregion
-        #region PUBLIC
         public string Name => name;
         public AudioClip Clip => clip;
         public float Volume => volume;
         public float Pitch => pitch;
         public bool Loop => loop;
+ 
+    }
+    public enum TypeOfSound
+    {
+        Music,
+        SoundEffect,
+        Dialog
+    }
+    [Serializable]
+    public class AudioContainer
+    {
+        [SerializeField]
+        private TypeOfSound type;
+        [SerializeField]
+        private Sound[] sounds;
 
-
-        [HideInInspector]
-        public AudioSource Source;
-        #endregion
+        public TypeOfSound Type => type;
+        public Sound[] Sounds => sounds;
     }
 }
