@@ -1,4 +1,5 @@
 using System;
+using Zenject;
 
 namespace Support
 {
@@ -7,6 +8,8 @@ namespace Support
     /// </summary>
     public class GameController : MonoSingleton<GameController>
     {
+        [Inject] private readonly LevelManager _levelManager;
+        
         /// <summary>Event that invokes each time when level is ended</summary>
         public event Action<bool> OnLevelEnded;
         /// <summary>Event that invokes each time when level is restarted</summary>
@@ -20,7 +23,7 @@ namespace Support
         public void RestartLevel()
         {
             OnLevelRestart?.Invoke();
-            LevelManager.Instance.RestartLevel();
+            _levelManager.RestartLevel();
         }
 
         /// <summary>

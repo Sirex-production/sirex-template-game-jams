@@ -11,7 +11,7 @@ namespace Support.Console
     /// <summary>
     /// Class that responsible for managing console input and output
     /// </summary>
-    public class Console : MonoSingleton<Console>
+    public sealed class Console : MonoSingleton<Console>
     {
         [Tooltip("UI button that will activate console (Can be not assigned)")]
         [SerializeField] private Button uiButtonThatActivatesConsole;
@@ -27,10 +27,8 @@ namespace Support.Console
 
         private bool _isActive = false;
         
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-            
             foreach (var classType in Assembly.GetExecutingAssembly().GetTypes())
             {
                 if(classType.GetInterfaces().Contains(typeof(IConsoleCommand)))

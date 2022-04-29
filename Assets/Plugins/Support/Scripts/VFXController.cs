@@ -7,16 +7,14 @@ using UnityEngine.Rendering;
 
 namespace Support
 {
-    public class VFXController : MonoSingleton<VFXController>
+    public class VFXController : MonoBehaviour
     {
         [SerializeField] private PostProcessingPair[] postProcessingPresets;
 
         private Dictionary<string, Volume> _postProcessingPresetsDictionary;
         private Dictionary<Volume, Coroutine> _volumeCoroutines = new Dictionary<Volume, Coroutine>();
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-            
             _postProcessingPresetsDictionary = postProcessingPresets.ToDictionary(pair => pair.effectId, pair => pair.postProcessingVolume);
         }
 

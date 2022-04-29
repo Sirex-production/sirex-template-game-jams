@@ -1,14 +1,17 @@
 using System;
 using Support.SLS;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Support
 {
     /// <summary>
     /// Class that manages levels
     /// </summary>
-    public class LevelManager : MonoSingleton<LevelManager>
+    public sealed class LevelManager
     {
+        [Inject] private SaveLoadSystem _saveLoadSystem;
+        
         /// <summary>
         /// Loads level
         /// </summary>
@@ -29,16 +32,16 @@ namespace Support
         /// <summary>Restarts last level that was saved in progress(SaveLoadSystem)</summary>
         public void RestartLevel()
         {
-            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Value);
+            LoadLevel(_saveLoadSystem.SaveData.CurrentLevelNumber.Value);
         }
         
         /// <summary>Loads next level and modifies progress in SaveLoadSystem</summary>
         public void LoadNextLevel()
         {
-            SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Value++;
-            SaveLoadSystem.Instance.PerformSave();
+            _saveLoadSystem.SaveData.CurrentLevelNumber.Value++;
+            _saveLoadSystem.PerformSave();
             
-            LoadLevel(SaveLoadSystem.Instance.SaveData.CurrentLevelNumber.Value);
+            LoadLevel(_saveLoadSystem.SaveData.CurrentLevelNumber.Value);
         }
     }
 }

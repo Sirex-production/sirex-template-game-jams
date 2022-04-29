@@ -1,5 +1,6 @@
 using UnityEngine;
 using Support.Extensions;
+using Zenject;
 
 namespace Support.Tests.Manual
 {
@@ -11,22 +12,24 @@ namespace Support.Tests.Manual
         [SerializeField] private bool debugRelease = false;
         [SerializeField] private bool debugDrag = false;
 
+        [Inject] private readonly TouchScreenInputSystem _touchScreenInputSystem;
+        
         private void Start()
         {
-            TouchScreenInputSystem.Instance.OnDirectionalSwipeAction += DebugDirectionalSwipe;
-            TouchScreenInputSystem.Instance.OnSwipeAction += DebugSwipe;
-            TouchScreenInputSystem.Instance.OnTouchAction += DebugTouch;
-            TouchScreenInputSystem.Instance.OnReleaseAction += DebugTouchRelease;
-            TouchScreenInputSystem.Instance.OnDragAction += DebugDrag;
+            _touchScreenInputSystem.OnDirectionalSwipeAction += DebugDirectionalSwipe;
+            _touchScreenInputSystem.OnSwipeAction += DebugSwipe;
+            _touchScreenInputSystem.OnTouchAction += DebugTouch;
+            _touchScreenInputSystem.OnReleaseAction += DebugTouchRelease;
+            _touchScreenInputSystem.OnDragAction += DebugDrag;
         }
 
         private void OnDestroy()
         {
-            TouchScreenInputSystem.Instance.OnDirectionalSwipeAction -= DebugDirectionalSwipe;
-            TouchScreenInputSystem.Instance.OnSwipeAction -= DebugSwipe;
-            TouchScreenInputSystem.Instance.OnTouchAction -= DebugTouch;
-            TouchScreenInputSystem.Instance.OnReleaseAction -= DebugTouchRelease;
-            TouchScreenInputSystem.Instance.OnDragAction -= DebugDrag;
+            _touchScreenInputSystem.OnDirectionalSwipeAction -= DebugDirectionalSwipe;
+            _touchScreenInputSystem.OnSwipeAction -= DebugSwipe;
+            _touchScreenInputSystem.OnTouchAction -= DebugTouch;
+            _touchScreenInputSystem.OnReleaseAction -= DebugTouchRelease;
+            _touchScreenInputSystem.OnDragAction -= DebugDrag;
         }
 
         private void DebugDirectionalSwipe(Vector2 swipeDirection)
