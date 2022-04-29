@@ -11,7 +11,7 @@ namespace Support.DI
         [SerializeField] private GameController gameController;
         [Required] 
         [SerializeField] private SaveLoadSystem saveLoadSystem;
-        [Required] 
+            [Required] 
         [SerializeField] private TouchScreenInputSystem touchScreenInputSystem;
         [Required] 
         [SerializeField] private VFXController vfxController;
