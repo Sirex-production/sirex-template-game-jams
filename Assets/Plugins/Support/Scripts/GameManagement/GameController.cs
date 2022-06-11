@@ -1,11 +1,12 @@
 using System;
+using UnityEngine;
 
 namespace Support
 {
     /// <summary>
     /// Class that manages general game logic
     /// </summary>
-    public class GameController : MonoSingleton<GameController>
+    public class GameController : MonoBehaviour
     {
         /// <summary>Event that invokes each time when level is ended</summary>
         public event Action<bool> OnLevelEnded;
@@ -20,7 +21,6 @@ namespace Support
         public void RestartLevel()
         {
             OnLevelRestart?.Invoke();
-            LevelManager.Instance.RestartLevel();
         }
 
         /// <summary>

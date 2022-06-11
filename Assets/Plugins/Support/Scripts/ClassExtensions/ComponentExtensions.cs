@@ -33,5 +33,18 @@ namespace Support.Extensions
             TemplateUtils.SafeDebug(objectContent, logType);
 #endif
         }
+
+        /// <summary>
+        /// Assigns one layer to all children
+        /// </summary>
+        /// <param name="layer">Layer that will be assigned to the children</param>
+        public static void SetLayerToAllChildren(this Component component, int layer)
+        {
+            var childrenTransforms = component.GetComponentsInChildren<Transform>();
+            
+            foreach (var childrenTransform in childrenTransforms) 
+                childrenTransform.gameObject.layer = layer;
+            
+        }
     }
 }

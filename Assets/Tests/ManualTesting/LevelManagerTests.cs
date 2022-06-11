@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Support.Tests.Manual
 {
@@ -6,14 +7,16 @@ namespace Support.Tests.Manual
     {
         [SerializeField] private KeyCode keyToLoadNextLevel = KeyCode.Space;
         [SerializeField] private KeyCode keyToRestartLevel = KeyCode.R;
+
+        [Inject] private readonly LevelManager _levelManager;
         
         private void Update()
         {
             if(Input.GetKeyUp(keyToLoadNextLevel))
-                LevelManager.Instance.LoadNextLevel();
+                _levelManager.LoadNextLevel();
             
             if(Input.GetKeyUp(keyToRestartLevel))
-                LevelManager.Instance.RestartLevel();
+                _levelManager.RestartLevel();
         }
     }
 }

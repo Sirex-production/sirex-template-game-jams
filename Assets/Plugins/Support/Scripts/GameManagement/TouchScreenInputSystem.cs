@@ -8,7 +8,7 @@ namespace Support
 	/// <summary>
 	/// Class that is responsible for reading user input
 	/// </summary>
-	public class TouchScreenInputSystem : MonoSingleton<TouchScreenInputSystem>, IPointerDownHandler, IPointerUpHandler, IDragHandler
+	public sealed class TouchScreenInputSystem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 	{
 		[SerializeField] private float minimumDeltaSwipe = 2f;
 		

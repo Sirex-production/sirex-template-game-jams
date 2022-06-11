@@ -6,7 +6,7 @@ namespace Support.SLS
     /// <summary>
     /// Class that is responsible for managing saves
     /// </summary>
-    public class SaveLoadSystem : MonoSingleton<SaveLoadSystem>
+    public sealed class SaveLoadSystem : MonoBehaviour
     {
         private SaveData _saveData;
         private ISaveDataSerializer _saveDataSerializer = new BinarySerializer();
@@ -14,15 +14,10 @@ namespace Support.SLS
         /// <summary>Data that can be saved</summary>
         public SaveData SaveData => _saveData;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
             var serializedSaveData = PlayerPrefs.GetString("save");
-            if (string.IsNullOrEmpty(serializedSaveData)) 
-                _saveData = new SaveData();
-            else
-                _saveData = _saveDataSerializer.DeserializeData(serializedSaveData);
+            _saveData = string.IsNullOrEmpty(serializedSaveData) ? new SaveData() : _saveDataSerializer.DeserializeData(serializedSaveData);
         }
 
         /// <summary>Saves data to the drive</summary>
