@@ -12,7 +12,7 @@ namespace Support
         [SerializeField] private PostProcessingPair[] postProcessingPresets;
 
         private Dictionary<string, Volume> _postProcessingPresetsDictionary;
-        private Dictionary<Volume, Coroutine> _volumeCoroutines = new Dictionary<Volume, Coroutine>();
+        private Dictionary<Volume, Coroutine> _volumeCoroutines = new();
         private void Awake()
         {
             _postProcessingPresetsDictionary = postProcessingPresets.ToDictionary(pair => pair.effectId, pair => pair.postProcessingVolume);

@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Support.Audio;
 using Support.SLS;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,12 @@ namespace Support.DI
         [SerializeField] private GameController gameController;
         [Required] 
         [SerializeField] private SaveLoadSystem saveLoadSystem;
-            [Required] 
+        [Required] 
         [SerializeField] private TouchScreenInputSystem touchScreenInputSystem;
         [Required] 
         [SerializeField] private VFXController vfxController;
+        [Required]
+        [SerializeField] private AudioController audioController;
 
         public override void InstallBindings()
         {
@@ -29,7 +32,9 @@ namespace Support.DI
                 .NonLazy();
 
             Container.Bind<VFXController>()
-                .FromInstance(vfxController);
+                .FromInstance(vfxController)
+                .AsSingle()
+                .NonLazy();
 
             Container.Bind<SaveLoadSystem>()
                 .FromInstance(saveLoadSystem)
@@ -38,6 +43,11 @@ namespace Support.DI
             
             Container.Bind<LevelManager>()
                 .FromNew()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<AudioController>()
+                .FromInstance(audioController)
                 .AsSingle()
                 .NonLazy();
         }

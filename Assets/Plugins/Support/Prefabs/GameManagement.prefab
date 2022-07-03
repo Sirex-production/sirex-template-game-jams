@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3380718858009470457}
   m_RootOrder: 1
@@ -43,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGlobal: 1
+  m_IsGlobal: 1
   priority: 0
   blendDistance: 0
   weight: 1
@@ -75,6 +76,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8902338551309468710}
   m_RootOrder: 0
@@ -95,6 +97,7 @@ MonoBehaviour:
   saveLoadSystem: {fileID: 194495843641462906}
   touchScreenInputSystem: {fileID: 3380718857163657316}
   vfxController: {fileID: 2358537085295648152}
+  audioController: {fileID: 7535774386149247361}
 --- !u!1 &3380718857085259159
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +127,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3380718857163657317}
   - {fileID: 3380718857491081256}
@@ -225,6 +229,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3380718857085259147}
   m_RootOrder: 0
@@ -313,6 +318,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -237, y: -421.00146, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3380718857085259147}
   m_RootOrder: 1
@@ -364,6 +370,7 @@ GameObject:
   - component: {fileID: 3380718857738523392}
   - component: {fileID: 194495843641462906}
   - component: {fileID: 2358537085295648152}
+  - component: {fileID: 7535774386149247361}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -381,6 +388,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 210.66034, y: 410.826, z: -5.7411785}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8902338551309468710}
   - {fileID: 5524486268360131627}
@@ -444,6 +452,21 @@ MonoBehaviour:
   postProcessingPresets:
   - effectId: Default
     postProcessingVolume: {fileID: 8456106542172207063}
+--- !u!114 &7535774386149247361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380718858009470459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd86a186172b465a9fd70ee48490b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialAmountOfAudioSources: 10
+  audioData: {fileID: 11400000, guid: 22cab719b24d9c6418ccec7e4da21f09, type: 2}
+  audioSourcesContainer: {fileID: 3380718858009470459}
 --- !u!1 &7145000635142307372
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +495,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 668192829040994883}
   m_Father: {fileID: 3380718858009470457}

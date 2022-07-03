@@ -26,9 +26,11 @@ namespace Support.Console
         private string _input = "";
 
         private bool _isActive = false;
-        
-        private void Awake()
+
+        protected override void Awake()
         {
+            base.Awake();
+            
             foreach (var classType in Assembly.GetExecutingAssembly().GetTypes())
             {
                 if(classType.GetInterfaces().Contains(typeof(IConsoleCommand)))
