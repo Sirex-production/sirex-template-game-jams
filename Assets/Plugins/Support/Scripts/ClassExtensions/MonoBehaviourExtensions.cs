@@ -38,27 +38,24 @@ namespace Support.Extensions
             }
         }
 
-        private static IEnumerator LerpRoutine(float speed, float a, float b, Action<float> action)
+        private static IEnumerator LerpRoutine(float speed, float a, float b, Action<float> action, Action onEnd)
         {
             if(action == null)
                 yield break;
-            
-            speed = Mathf.Min(Mathf.Abs(b - a), Mathf.Abs(speed));
-            speed = b < a ? -speed : speed;
             
             float currentValue = a;
 
             while (Math.Abs(currentValue - b) > .001f)
             {
                 action(currentValue);
-                currentValue += Time.deltaTime * speed;
-                
+                currentValue = Mathf.Lerp(currentValue, b, speed * Time.deltaTime);
+
                 yield return null;
             }
             
             action(b);
+            onEnd?.Invoke();
         }
-
         /// <summary>
         /// Starts coroutine that repeats function with some pause
         /// </summary>
@@ -103,10 +100,11 @@ namespace Support.Extensions
         /// <param name="a">Initial value</param>
         /// <param name="b">Target value</param>
         /// <param name="action">Function that will be invoked on each frame. Takes float that represents lerping value at a given moment of time</param>
+        /// <param name="onEnd">Function that will be invoked after lerp is finished</param>
         /// <returns></returns>
-        public static Coroutine LerpCoroutine(this MonoBehaviour monoBehaviour, float speed, float a, float b, Action<float> action)
+        public static Coroutine LerpCoroutine(this MonoBehaviour monoBehaviour, float speed, float a, float b, Action<float> action, Action onEnd = null)
         {
-            return monoBehaviour.StartCoroutine(LerpRoutine(speed, a, b, action));
+            return monoBehaviour.StartCoroutine(LerpRoutine(speed, a, b, action, onEnd));
         }
     }
 }
