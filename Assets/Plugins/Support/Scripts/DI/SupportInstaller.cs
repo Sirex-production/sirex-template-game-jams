@@ -9,8 +9,6 @@ namespace Support.DI
     public class SupportInstaller : MonoInstaller
     {
         [Required] 
-        [SerializeField] private GameController gameController;
-        [Required] 
         [SerializeField] private SaveLoadSystem saveLoadSystem;
         [Required] 
         [SerializeField] private TouchScreenInputSystem touchScreenInputSystem;
@@ -21,11 +19,6 @@ namespace Support.DI
 
         public override void InstallBindings()
         {
-            Container.Bind<GameController>()
-                .FromInstance(gameController)
-                .AsSingle()
-                .NonLazy();
-
             Container.Bind<TouchScreenInputSystem>()
                 .FromInstance(touchScreenInputSystem)
                 .AsSingle()

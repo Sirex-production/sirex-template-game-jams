@@ -27,6 +27,12 @@ namespace Support
 		private bool _isAbleToInput = true;
 		private Vector2 _deltaSwipe = Vector2.zero;
 
+		public bool Enabled
+		{
+			get => _isAbleToInput;
+			set => _isAbleToInput = value;
+		}
+
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			if (!_isAbleToInput)
