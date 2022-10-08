@@ -1,4 +1,4 @@
-using EditorExtensions;
+using NaughtyAttributes;
 using Support.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +10,10 @@ namespace Support.UI
     /// </summary>
     public class UiSlider : MonoBehaviour
     {
-        [NotNull]
         [Tooltip("Image that represents front part of the slider")]
-        [SerializeField] private Image frontImage;
+        [Required, SerializeField] private Image frontImage;
         [Tooltip("Image that represents back part of the slider")]
-        [SerializeField] private Image backImage;
+        [Required, SerializeField] private Image backImage;
         [Space]
         [SerializeField] [Range(0, 1)] private float frontImageFillAmount = 1;
         [SerializeField] [Range(0, 1)] private float backImageFillAmount = 1;

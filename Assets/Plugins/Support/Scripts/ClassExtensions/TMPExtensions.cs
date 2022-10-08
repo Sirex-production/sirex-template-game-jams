@@ -53,7 +53,6 @@ namespace Support.Extensions
         /// <summary>
         /// Display content in certain text area with writing effect
         /// </summary>
-        /// <param name="monoBehaviour"></param>
         /// <param name="textArea">Area where content will be displayed</param>
         /// <param name="textToDisplay">Content that text area will display</param>
         /// <param name="spawnDelayTime">Pause between appearing letters</param>
