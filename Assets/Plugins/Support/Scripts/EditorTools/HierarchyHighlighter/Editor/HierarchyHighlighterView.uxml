@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Hierarchy Highlighter" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; font-size: 24px; -unity-font-style: bold; margin-bottom: 20px;" />
+    <uie:ColorField label="Background color" name="BackgroundColor" show-alpha="false" value="#383838FF" style="color: rgb(56, 56, 56); height: 18px;" />
+    <uie:ColorField label="Font color" name="FontColor" value="#FFFFFFFF" show-alpha="false" style="justify-content: center;" />
+    <ui:Toggle label="Bold" name="Bold" />
+    <ui:Toggle label="Italic" name="Italic" />
+    <ui:SliderInt picking-mode="Ignore" label="Font size" value="12" high-value="15" name="FontSize" show-input-field="true" />
+    <ui:Button text="Apply" display-tooltip-when-elided="true" name="Apply" style="background-color: rgb(60, 111, 75); margin-top: 6px;" />
+    <ui:Button text="Reset" display-tooltip-when-elided="true" name="Reset" style="background-color: rgb(111, 77, 60);" />
+    <ui:Button text="Reset all" display-tooltip-when-elided="true" name="ResetAll" style="background-color: rgb(111, 77, 60);" />
+    <ui:Button text="Find &lt;b&gt;Nulls&lt;/b&gt;" display-tooltip-when-elided="true" name="FindNulls" style="margin-top: 5px;" />
+    <ui:Button text="Reset &lt;b&gt;Nulls&lt;/b&gt;" display-tooltip-when-elided="true" name="ResetNulls" style="margin-top: 0;" />
+    <ui:Label text="&lt;b&gt;@Viktor Lishchuk&lt;/b&gt; in Slack" display-tooltip-when-elided="true" enable-rich-text="true" style="white-space: normal; -unity-text-align: middle-center; font-size: 8px; position: absolute; bottom: 1px; right: 1px; height: 22px; width: 77px; color: rgb(156, 156, 156);" />
+</ui:UXML>
