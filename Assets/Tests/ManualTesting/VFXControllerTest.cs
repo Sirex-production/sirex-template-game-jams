@@ -9,7 +9,7 @@ namespace Support.Tests.Manual
         [SerializeField] private string volumeId;
         [SerializeField] private float lerpSpeed = 1;
 
-        [Inject] private readonly VFXController _vfxController;
+        [Inject] private readonly VFXService _vfxController;
         
         [Button("Change volume without lerp")]
         public void ChangeVolumeWithOutLerp()

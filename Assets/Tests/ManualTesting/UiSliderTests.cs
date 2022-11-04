@@ -1,5 +1,5 @@
 using System.Collections;
-using EditorExtensions;
+using NaughtyAttributes;
 using Support.UI;
 using UnityEngine;
 
@@ -7,8 +7,7 @@ namespace Support.Tests.Manual
 {
     public class UiSliderTests : MonoBehaviour
     {
-        [NotNull]
-        [SerializeField] private UiSlider slider;
+        [Required, SerializeField] private UiSlider slider;
 
         [Space] [SerializeField] private float animationSpeed = .3f;
 

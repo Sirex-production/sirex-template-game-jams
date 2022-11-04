@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Tests/ManualTesting/Scenes/TestingScene 0.unity
+    path: Packages/com.sirexproductions.support/Support/Tests/ManualTesting/Scenes/TestingScene
+      0.unity
     guid: 8ec3103a248835d439750d8cbab927c7
   - enabled: 1
-    path: Assets/Tests/ManualTesting/Scenes/TestingScene 1.unity
+    path: Packages/com.sirexproductions.support/Support/Tests/ManualTesting/Scenes/TestingScene
+      1.unity
     guid: 35b564d9f01e0284abcaa1b33b457c74
   - enabled: 1
-    path: Assets/Tests/ManualTesting/Scenes/TestingScene 2.unity
+    path: Packages/com.sirexproductions.support/Support/Tests/ManualTesting/Scenes/TestingScene
+      2.unity
     guid: 7a67286601f39d94e995156bc0fc997f
   m_configObjects: {}

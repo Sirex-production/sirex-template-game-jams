@@ -9,7 +9,7 @@ namespace Support.Tests.Manual
     {
         [SerializeField] private string audioClipKeyToPlay;
 
-        [Inject] private AudioController _audioController;
+        [Inject] private AudioService _audioController;
         
         [Button]
         public void PlayAudio()

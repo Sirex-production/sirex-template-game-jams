@@ -1,5 +1,6 @@
 using UnityEngine;
 using Support.Extensions;
+using Support.Inputs;
 using Zenject;
 
 namespace Support.Tests.Manual
@@ -12,7 +13,7 @@ namespace Support.Tests.Manual
         [SerializeField] private bool debugRelease = false;
         [SerializeField] private bool debugDrag = false;
 
-        [Inject] private readonly TouchScreenInputSystem _touchScreenInputSystem;
+        [Inject] private readonly TouchScreenInputService _touchScreenInputSystem;
         
         private void Start()
         {
